@@ -1,0 +1,16 @@
+services:
+  nginx:
+    image: "nginx:latest"
+    container_name: frontend-deploy-nginx
+    restart: unless-stopped
+    volumes:
+      - /home/ec2-user/my/vue-frontend/conf:/etc/nginx/conf.d
+      - /home/ec2-user/my/vue-frontend/html:/usr/share/nginx/html
+    ports:
+      - "80:80"
+    networks:
+      - app
+
+networks:
+  app:
+    driver: bridge
